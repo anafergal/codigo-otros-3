@@ -1,3 +1,5 @@
+// Ana Fernanda García López calificación 3/5
+
 // Tenemos un li de productos
 
 const productos = [
@@ -8,24 +10,27 @@ const productos = [
   {nombre: "Zapato rojo", tipo: "zapato", color: "rojo", img: "./zapato-rojo.jpg"}
 ]
 
-const li = document.getElementsByName("lista-de-productos")
-const $i = document.querySelector('.input');
+const li = document.getElementById("lista-de-productos"); //cambio por getElementById
+const entrada = document.getElementById('entrada'); //cambio por getElementById y se cambió $i por entrada
 
-for (let i = 0; i < productos.length; i++) {
-  var d = document.createElement("div")
-  d.classList.add("producto")
-
-  var ti = document.createElement("p")
-  ti.classList.add("titulo")
-  ti.textContent = productos[i].nombre
+const displayProductos = (productos) => { //se metió un for en una función flecha llamada displayProductos
+  for (let i = 0; i < productos.length; i++) {
+    var d = document.createElement("div")
+    d.classList.add("producto")
   
-  var imagen = document.createElement("img");
-  imagen.setAttribute('src', productos[i].img);
+    var ti = document.createElement("p")
+    ti.classList.add("titulo")
+    ti.textContent = productos[i].nombre
+    
+    var imagen = document.createElement("img");
+    imagen.setAttribute('src', productos[i].img);
 
-  d.appendChild(ti)
-  d.appendChild(imagen)
+    d.appendChild(ti)
+    d.appendChild(imagen)
+  
+    li.appendChild(d)
+  }
 
-  li.appendChild(d)
 }
 
 displayProductos(productos)
@@ -36,7 +41,7 @@ botonDeFiltro.onclick = function() {
     li.removeChild(li.firstChild);
   }
 
-  const texto = $i.value;
+  const texto = entrada.value; //se cambio $i por entrada
   console.log(texto);
   const productosFiltrados = filtrado(productos, texto );
 
@@ -50,7 +55,7 @@ botonDeFiltro.onclick = function() {
     
     var imagen = document.createElement("img");
     imagen.setAttribute('src', productosFiltrados[i].img);
-  
+
     d.appendChild(ti)
     d.appendChild(imagen)
   
